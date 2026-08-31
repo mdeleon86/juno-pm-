@@ -2,7 +2,7 @@
 
 ## Prototype link
 
-https://lovable.dev/projects/7b253e9d-f843-4a45-b1a6-d4154b837a41?magic_link=mc_bc879035-0b08-4e05-92e5-eb861cf7beb9
+https://lovable.dev/projects/2f5ded51-63a2-405f-bc8f-822f42454dff?magic_link=mc_c7825c0f-5175-4d39-a094-48c78b506240
 
 ## What it demonstrates
 

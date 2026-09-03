@@ -2,21 +2,17 @@
 
 _Working notes from Module 3 Lab 1. Do not paste over `03-rag-prd/prd.md`. That file comes from the AI PRD Builder._
 
-**Lovable prototype:** https://feedback-prism-studio.lovable.app
+**Prototype:** https://juno-canvas.lovable.app
 
 ### Before - Quality Mode (no strategy)
 
-P0 Dashboard Slow Loading and Filtering Latency
-P0 Team Invitation Permission Errors
-P1 Report Export Formats (CSV and PDF)
+Export failures, broken-sync alerting, and onboarding speed. Priorities were based on transcript signals without RocketShip strategy grounding.
 
 ### After - Strategy Mode (with RocketShip Strategy One-Pager)
 
-P0 Teammate invitation fails due to permission errors
-P1 Dashboard lag and slow load times on large date ranges
-P1 CSV export functionality for recurring reports
+P0 CSV export crash aligned to Reliability First; bright blue navigation bar P3 / Not recommended; dark mode P3 / Not recommended.
 
 ### Takeaway
 
-> Clear hallucinations were made without the strategy doc, leading reader to believe the dashboard is slow for no apparent reason, and that an entire team is receiving an invitation/error as opposed to a single user without permissions.
+> RAG turned Juno from a generic prioritization tool into a strategy-grounded copilot that can explain what matters now and what should wait.
 

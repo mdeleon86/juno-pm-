@@ -10,24 +10,24 @@ RocketShip PMs need evidence-based prioritization. Juno turns noisy Slack, ticke
 
 **Retrieval strategy:** Hybrid
 
-Keyword retrieval is needed to identify patterns connecting multiple support escalations to a the same issues such as "login". Summarizing all holistically for a PRD requires semantic. Going RAG-only sacrifices narrative; long-context only sacrifices precision and budget.
+PMs ask both kinds of questions. Specific: "What did the Pearson Co Oct 14 ticket cite as blocker?" - needs keyword retrieval. Vibes: "What is the dominant frustration theme this week?" - needs semantic. Going RAG-only sacrifices narrative; long-context only sacrifices precision and budget.
 
 ## Retrieval requirements (RAG)
 
-- **Sources:** Sources: RocketShip Strategy One-Pager (M2 deliverable) + last 30 days of Slack #voice-of-customer + Jira tickets under Customer Service Intake pool.
+- **Sources:** Sources: RocketShip Strategy One-Pager (M2 deliverable) + last 90 days of Slack #voice-of-customer + Zendesk tickets tagged P0/P1 + Salesforce closed-lost notes.
 
 Quantity: ~600 documents total. Strategy doc is the one true authority - all other sources are evidence in support.
 - **Chunking / indexing:** Hybrid (Semantic + Keyword)
-- **Grounding rule:** Every priority Juno produces (P0-P3 or not Recommended) cites at least one piece of evidence (ticket ID, Slack permalink)) and categorization includes cited reason. The PRD draft renders citations inline as footnotes the PM can click to verify.
-- **Freshness:** Strategy One-Pager: sync on commit (it lives in the team Notion / git). Slack: refresh 3 times daily (EDT 8am, 12pm, 4pm) to keep timely internal escalations current during work hours. Jira: daily sync at 01:00pm UTC- ahead of prioritization meetings.
+- **Grounding rule:** Every priority Juno produces (P0-P3 or notRecommended) cites at least one strategy clause AND at least one piece of evidence (ticket ID, Slack permalink, deal note ID). The PRD draft renders citations inline as footnotes the PM can click to verify.
+- **Freshness:** Strategy One-Pager: sync on commit (it lives in the team Notion / git). Slack + Zendesk: refresh hourly to keep recent customer signal current. Salesforce: daily sync at 02:00 UTC - lost-deal notes are a leading indicator, not a real-time channel.
 
 ## Requirements
 
 | # | Requirement | Priority | Acceptance criteria |
 |---|---|---|---|
 | 1 | Retrieval quality and latency | Must | Top-K = 8 retrieval segments per prioritization run. p95 latency target < 3s end-to-end (from "Process" click to ranked PRD draft). At our $0.03/1k token blended cost, this lands at ~$0.07 per Juno run - acceptable for daily PM use. |
-| 2 | Fail-safe on empty retrieval | Must | Conflicting evidence is flagged explicitly for PM review. Hand off to human PM if confidence is below 70% on any P0 risk. |
-| 3 | Grounded trust | Must | Every priority Juno produces (P0-P3 or not Recommended) cites at least one piece of evidence (ticket ID, Slack permalink)) and categorization includes cited reason. The PRD draft renders citations inline as footnotes the PM can click to verify. |
+| 2 | Fail-safe on empty retrieval | Must | If retrieval returns < 3 relevant segments OR if no strategy doc is loaded, Juno does NOT produce a P0/P1 ranking. Instead it returns a clear banner: "Insufficient evidence to recommend priority - load a strategy document or escalate to PM judgement." This is a feature, not a failure. |
+| 3 | Grounded trust | Must | Every priority Juno produces (P0-P3 or notRecommended) cites at least one strategy clause AND at least one piece of evidence (ticket ID, Slack permalink, deal note ID). The PRD draft renders citations inline as footnotes the PM can click to verify. |
 
 ## Out of scope
 

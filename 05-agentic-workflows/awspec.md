@@ -39,7 +39,7 @@ New message in #escalations tagged P0 AND thread length >= 5 messages within 10 
 
 ## Human-in-the-loop
 
-PM reviews any P0 with confidence < 70% before posting. Daily 8:55am: PM has a 5-min review window before the agent auto-posts to #pm-daily.
+PM approval is required before Juno posts to Slack or creates any Jira item. Confidence scores may help prioritize review, but they do not authorize actions. If confidence is below 70%, evidence is missing or conflicting, or the case involves legal, security, or churn risk, Juno must explicitly escalate to the PM and wait for approval.
 
 ## Success & failure
 

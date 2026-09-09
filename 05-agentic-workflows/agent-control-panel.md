@@ -16,7 +16,7 @@ Agent can draft a P0 risk summary and Jira stub. Agent CANNOT auto-close threads
 
 **Confidence thresholds (map to actions):**
 
-Score 80%+ to auto-post to #pm-daily. 70 to 79% to post to #pm-juno-review with @on-call-pm. Below 70% to require PM approval.
+All outputs require PM approval before Juno posts to Slack or creates any Jira item. Confidence scores prioritize the level of review but never authorize autonomous action. Below 70% confidence requires explicit escalation to the PM.
 
 **Checkpoints:**
 

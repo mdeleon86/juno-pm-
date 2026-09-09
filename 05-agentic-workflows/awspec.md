@@ -21,14 +21,14 @@ New message in #escalations tagged P0 AND thread length >= 5 messages within 10 
 | 1 | Read the thread + retrieve customer ID and ARR if mentioned. | slack.read_thread(id), read-only | Agent can READ Slack #escalations + Strategy KB + Salesforce ARR. Agent can WRITE to #pm-daily and create Jira stubs. Agent CANNOT edit Salesforce records, edit Jira tickets after creation, or post outside #pm-daily. |
 | 2 | RAG retrieval over the RocketShip Strategy One-Pager (M3 KB), top-K = 6. | corpus.retrieve(query, k=6), read-only |  |
 | 3 | Score risk + alignment vs strategic pillars; emit P0-P3 with rationale. | salesforce.lookup_arr(customer_id), read-only |  |
-| 4 | Draft summary card (transcript quote + strategic citation). | jira.create_stub(payload), write, requires confidence >= 80% |  |
+| 4 | Draft summary card (transcript quote + strategic citation). | jira.draft_stub(payload),draft-only; PM approval required before Jira creation |  |
 | 5 | Post to #pm-daily OR route to PM review based on confidence threshold. | slack.post(channel, payload), write, restricted to #pm-daily |  |
 
 **Schemas**
 
 - corpus.retrieve → {chunks:[{text,source,pillar,score}]}.
 - salesforce.lookup_arr → {arr_usd, contract_end, churn_risk}.
-- jira.create_stub → {ticket_id, url, status}.
+- jira.draft_stub → {ticket_id, url, status}.
 
 **Memory (in or out of scope)**
 
